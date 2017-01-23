@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.techtime.fcmdemo">
+
+    //internet
+    <uses-permission android:name="android.permission.INTERNET" />
+    //device state
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    //storage
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    //notification
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <application
+        android:name="demo.techtime.com.fcmdemo.MyApp"
+        android:allowBackup="true"
+        android:icon="@drawable/btnnotification"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="demo.techtime.com.fcmdemo.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Firebase Notifications -->
+        <service android:name="demo.techtime.com.fcmdemo.FCMService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="demo.techtime.com.fcmdemo.FCMbroadcast"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.servpro.activity" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
